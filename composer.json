@@ -1,0 +1,21 @@
+{
+    "name": "mipotech/yii2-silverbyte-sdk",
+    "description": "A set of Yii2 classes for SilverByte integration",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Mipo Technologies Ltd",
+            "email": "chaim@mipo.co.il"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "mipotech\\silverbyte\\": ""
+        }
+    }
+}
