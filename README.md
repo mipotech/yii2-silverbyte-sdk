@@ -21,11 +21,62 @@ or add
 
 to the require section of your `composer.json` file.
 
+Configuration
+-----
+
+Add the following to @app/config/params.php:
+```php
+return [
+    ...
+    'silverbyte' => [
+        // optional - recipient for email alerts
+        'alertEmailRecipients' => [
+            '...',
+        ],
+        'baseUrl' => '...',
+        'userName' => '...',
+        'password' => '',
+        'customerID' => XXX,
+    ],
+    ...
+];
+```
+
+Add the following to @app/config/web.php:
+```php
+'log' => [
+    ...
+    'targets' => [
+        ...
+        [
+            'class' => 'yii\log\FileTarget',
+            'levels' => ['error', 'warning', 'info'],
+            'maxFileSize' => YII_DEBUG ? 1024 : 1024 * 5,
+            'maxLogFiles' => YII_DEBUG ? 2 : 10,
+            'categories' => ['mipotech\silverbyte\SilverbyteSdk'],
+            'logFile' => '@app/runtime/logs/silverbyte/api.log',
+            'logVars' => []
+        ],
+        ...
+    ],
+    ...
+],
+```
 
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+An example of how the SDK is to be used:
 
 ```php
-<?= \mipotech\silverbyte\AutoloadExample::widget(); ?>```
+use mipotech\silverbyte\SilverbyteSdk;
+
+$sbSdk = new SilverbyteSdk;
+$result = $sbSdk->getHotels();
+print_r($result);
+```
+
+Documentation
+-----
+
+Full documentation of all available API features must be obtained directly from SilverByte.
