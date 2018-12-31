@@ -517,12 +517,18 @@ class SilverbyteSdk extends \yii\base\Component
 		$endpoint = Yii::$app->params['silverbyte']['baseUrl'].$uri;
 		$requestModel->userName = Yii::$app->params['silverbyte']['userName'];
 		$requestModel->password = Yii::$app->params['silverbyte']['password'];
-		$requestModel->customerID = Yii::$app->params['silverbyte']['customerID'];
+        $customerId = null;
+        if (isset(Yii::$app->params['silverbyte']['customerID-'. substr(Yii::$app->language, 0, 2)])) {
+            $customerId = Yii::$app->params['silverbyte']['customerID-'. substr(Yii::$app->language, 0, 2)];
+        } elseif (isset(Yii::$app->params['silverbyte']['customerID'])) {
+            $customerId = Yii::$app->params['silverbyte']['customerID'];
+        }
 
-		if(!(Yii::$app->params['silverbyte']['baseUrl'] && $requestModel->userName && $requestModel->password && $requestModel->customerID)) {
+		if(!(Yii::$app->params['silverbyte']['baseUrl'] && $requestModel->userName && $requestModel->password && $customerId != null)) {
 			throw new \yii\base\InvalidConfigException("Missing credentials. Please verify that all Silverbyte credentials are defined in config/params.php");
 		}
-
+        $requestModel->customerID = $customerId;
+        
 		$dataArr = $requestModel->toArray();
 		$jsonData = Json::encode($dataArr);
 
