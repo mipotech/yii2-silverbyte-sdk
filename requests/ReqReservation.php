@@ -84,6 +84,11 @@ class ReqReservation extends ApiRequest
 	 * @var string $creditCardHolderName
 	 */
 	public $creditCardHolderName;
+    
+    /**
+     * @var string $TravelAgentName
+     */
+    public $TravelAgentName;
 
 	/**
 	 * @var string $CurrencyCode
