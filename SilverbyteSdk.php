@@ -528,7 +528,7 @@ class SilverbyteSdk extends \yii\base\Component
 			throw new \yii\base\InvalidConfigException("Missing credentials. Please verify that all Silverbyte credentials are defined in config/params.php");
 		}
         $requestModel->customerID = $customerId;
-        
+
 		$dataArr = $requestModel->toArray();
 		$jsonData = Json::encode($dataArr);
 
@@ -553,11 +553,10 @@ class SilverbyteSdk extends \yii\base\Component
 		if(YII_DEBUG) {
 			$logData['responseParsed'] = $response;
 		}
-		if($response['error']) {
-			Yii::error($logData, __CLASS__);
-		}
-		else {
-			Yii::info($logData, __CLASS__);
+		if ($response['error']) {
+			Yii::error($logData, __CLASS__ . ':' . $uri);
+		} else {
+		    Yii::info($logData, __CLASS__ . ':' . $uri);
 		}
 
 		// Call our internal error handler if we detect an error

@@ -4,6 +4,7 @@ namespace mipotech\silverbyte;
 
 use Yii;
 use yii\helpers\Json;
+use app\modules\dashboard\components\HelperFunc;
 
 class AlertEmail
 {
@@ -19,7 +20,7 @@ class AlertEmail
 		if (isset($extraParams['recipients'])) {
 			$to = $extraParams['recipients'];
 		}
-		elseif ($recipients = getSiteSetting('sb_email_recipient_list')) {
+		elseif ($recipients = HelperFunc::getSiteSetting('sb_email_recipient_list')) {
 			$to = $recipients;
 		}
 		elseif (isset(Yii::$app->params['silverbyte']['alertEmailRecipients'])) {
@@ -30,7 +31,7 @@ class AlertEmail
 		}
 
 		$ret = Yii::$app->mailer->compose()
-			//->setFrom('')
+			->setFrom('no-reply@fattal-hotels.com')
 			->setTo($to)
 			->setSubject($subject)
 			->setHtmlBody($body)
