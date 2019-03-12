@@ -57,7 +57,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'chains');
 		print_r();
-		return $ret['error'] ? [ ] : $ret['data'];
+		return $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}*/
 
 	public function getDayAvailability($params = [])
@@ -67,7 +67,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/day');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	/**
@@ -80,7 +80,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'chains');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	public function getHotels($params = [])
@@ -90,7 +90,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'hotels');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	//******* doesn't return anything******//
@@ -101,7 +101,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'hotels/emails');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getRoomsAvailability($params = [])
@@ -111,7 +111,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/rooms');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	//******* doesn't return anything******//
@@ -122,7 +122,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/room/session');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getPackageToShow($params = [])
@@ -132,7 +132,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/package/show');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	public function getPackageToBookPerPax($params = [])
@@ -142,7 +142,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/packages');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	//******* doesn't return anything******//
@@ -153,7 +153,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/package/session');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getMinimumPrice($params = [])
@@ -163,7 +163,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/min-price');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getProductFinalPrice($params = [])
@@ -173,7 +173,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/room/final-price');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getAvailabilityPrices($params = [])
@@ -183,7 +183,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/prices');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	public function getSpecialServices($params = [])
@@ -193,7 +193,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'specialservice');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	//******* doesn't return anything******//
@@ -204,7 +204,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'guest');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getUpdateGuest($params = [])
@@ -214,7 +214,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'guest/update');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	public function getUpdateReservation($params = [])
@@ -224,7 +224,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'availability/room/session/update');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	public function getNewReservation($params = [])
@@ -234,7 +234,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'reservation/insert');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	//******* doesn't return anything******//
@@ -245,7 +245,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'reservation/cancel');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getBookedReservations($params = [])
@@ -254,7 +254,8 @@ class SilverbyteSdk extends \yii\base\Component
 		$this->loadParams($request, $params);
 
 		$ret = $this->doRequest($request, 'reservation/booking');
-		return $ret['error'] ? [ ] : $ret['data'];
+        
+		return (isset($ret['error']) && $ret['error'] != '' && $ret['error'] != null) ? [ ] : $ret['data'];
 	}
 
 	public function getLanguages($params = [])
@@ -264,7 +265,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'languages');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getPriceCodeTranslations($params = [])
@@ -274,7 +275,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/pricecode');
 
-		return $ret['error'] ? print_r($params['languageID']) : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? print_r($params['languageID']) : $ret['data'];
 	}
 
 	public function getPlanTranslations($params = [])
@@ -284,7 +285,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/plan');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getRoomTranslations($params = [])
@@ -294,7 +295,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/room');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getHotelTranslations($params = [])
@@ -304,7 +305,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/hotel');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getCityTranslations($params = ["Jerusalem", "Tel-Aviv"])
@@ -314,7 +315,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/city');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getChainTranslations($params = [])
@@ -324,7 +325,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/chain');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getNationalityTranslations($params = [])
@@ -334,7 +335,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/nationality');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getPolicyTranslations($params = [])
@@ -344,7 +345,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/policy');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getSpecialServiceTranslations($params = [])
@@ -354,7 +355,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/specialservice');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getPackageCategoryTranslations($params = [])
@@ -364,7 +365,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/package/categories');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getCreditCompanyTranslations($params = [])
@@ -374,7 +375,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'translations/credit');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getRooms($params = [])
@@ -384,7 +385,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'rooms');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getRoomPax($params = [])
@@ -394,7 +395,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'rooms/pax');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	/**
@@ -412,7 +413,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'states');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	/**
@@ -430,7 +431,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'currencies');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getCreditCards($params = [])
@@ -440,7 +441,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'credit');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getPlans($params = [])
@@ -450,7 +451,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'plans');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 
@@ -466,7 +467,7 @@ class SilverbyteSdk extends \yii\base\Component
 		$this->loadParams($request, $params);
 
 		$ret = $this->doRequest($request, 'guest/discount');
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	public function getCustomerHotel($params = [])
@@ -476,7 +477,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'customer/hotel');
 
-		return $ret['error'] ? [] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [] : $ret['data'];
 	}
 
 	public function getRoomInventory($params = [])
@@ -486,7 +487,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		$ret = $this->doRequest($request, 'rooms/inventory');
 
-		return $ret['error'] ? [ ] : $ret['data'];
+		return isset($ret['error']) && $ret['error'] != '' && $ret['error'] ? [ ] : $ret['data'];
 	}
 
 	protected function loadParams(&$request, $params)
@@ -553,14 +554,15 @@ class SilverbyteSdk extends \yii\base\Component
 		if(YII_DEBUG) {
 			$logData['responseParsed'] = $response;
 		}
-		if ($response['error']) {
-			Yii::error($logData, __CLASS__ . ':' . $uri);
-		} else {
-		    Yii::info($logData, __CLASS__ . ':' . $uri);
+		if(isset($response['error'])) {
+			Yii::error($logData, __CLASS__);
 		}
-
+		else {
+			Yii::info($logData, __CLASS__);
+		}
+        
 		// Call our internal error handler if we detect an error
-		if($response['error'] && !YII_DEBUG) {
+		if(isset($response['error']) && !YII_DEBUG) {
 			$this->errorHandler($uri, $response);
 		}
 
