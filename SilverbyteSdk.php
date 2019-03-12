@@ -517,7 +517,8 @@ class SilverbyteSdk extends \yii\base\Component
 		$endpoint = Yii::$app->params['silverbyte']['baseUrl'].$uri;
 		$requestModel->userName = Yii::$app->params['silverbyte']['userName'];
 		$requestModel->password = Yii::$app->params['silverbyte']['password'];
-		$requestModel->customerID = Yii::$app->params['silverbyte']['customerID'];
+		$requestModel->customerID = Yii::$app->language == 'en-US' ? Yii::$app->params['silverbyte']['customerID-en'] :
+		(Yii::$app->language == 'fr-FR' ? Yii::$app->params['silverbyte']['customerID-fr'] : Yii::$app->params['silverbyte']['customerID-ru']);
 
 		if(!(Yii::$app->params['silverbyte']['baseUrl'] && $requestModel->userName && $requestModel->password && $requestModel->customerID)) {
 			throw new \yii\base\InvalidConfigException("Missing credentials. Please verify that all Silverbyte credentials are defined in config/params.php");
@@ -556,7 +557,7 @@ class SilverbyteSdk extends \yii\base\Component
 
 		// Call our internal error handler if we detect an error
 		if($response['error'] && !YII_DEBUG) {
-			$this->errorHandler($uri, $response);
+			$this->errorHandler($uri, $requestModel, $response);
 		}
 
 		return $response;
@@ -565,14 +566,19 @@ class SilverbyteSdk extends \yii\base\Component
 	/**
 	 * Handle API errors that require special behavior
 	 *
+	 * @param string $uri The URI of the request
+	 * @param miptotech\silverybyte\requests\ApiRequest $request
 	 * @param array $response
 	 */
-	protected function errorHandler($uri, $response)
+	protected function errorHandler($uri, $request, $response)
 	{
 		$errorCode = intval($response['message']['textNumber']);
 
-		// Default email body is a pretty print of the complete response
-		$body = "<p>Endpoint: {$uri}</p><p>Response:</p><p>".print_r($response, true)."</p>";
+		// Default email body is a pretty print of the complete request, response, and backtrace
+		$body = "<p>Endpoint: {$uri}</p>";
+		$body .= "<p>Request:</p><p>".print_r($request, true)."</p>";
+		$body .= "<p>Response:</p><p><pre>".print_r($response, true)."</pre></p>";
+		$body .= "<p>Trace:</p><p><pre>".print_r(debug_backtrace(false), true)."</pre></p>";
 
 		// Heart beat failure
 		if ($errorCode == 1930) {
