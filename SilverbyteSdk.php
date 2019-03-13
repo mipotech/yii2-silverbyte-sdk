@@ -555,10 +555,10 @@ class SilverbyteSdk extends \yii\base\Component
 			$logData['responseParsed'] = $response;
 		}
 		if(isset($response['error'])) {
-			Yii::error($logData, __CLASS__);
+			Yii::error($logData, __CLASS__ . ':' . $uri);
 		}
 		else {
-			Yii::info($logData, __CLASS__);
+			Yii::info($logData, __CLASS__ . ':' . $uri);
 		}
         
 		// Call our internal error handler if we detect an error
