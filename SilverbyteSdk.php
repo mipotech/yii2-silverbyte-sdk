@@ -554,7 +554,7 @@ class SilverbyteSdk extends \yii\base\Component
 		if(YII_DEBUG) {
 			$logData['responseParsed'] = $response;
 		}
-		if(isset($response['error'])) {
+		if(!empty($response['error'])) {
 			Yii::error($logData, __CLASS__ . ':' . $uri);
 		}
 		else {
@@ -562,8 +562,8 @@ class SilverbyteSdk extends \yii\base\Component
 		}
         
 		// Call our internal error handler if we detect an error
-		if(isset($response['error']) && !YII_DEBUG) {
-			$this->errorHandler($uri, $response);
+		if(!empty($response['error']) && !YII_DEBUG) {
+			$this->errorHandler($uri, $requestModel, $response);
 		}
 
 		return $response;
